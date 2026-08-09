@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Undangan Pernikahan — XXX & XXX</title>
+<meta name="description" content="Undangan pernikahan digital XXX & XXX" />
+
+<!-- Open Graph so the link looks nice when shared on WhatsApp -->
+<meta property="og:title" content="Undangan Pernikahan XXX & XXX" />
+<meta property="og:description" content="Dengan penuh sukacita, kami mengundang Anda untuk hadir di hari bahagia kami." />
+<meta property="og:image" content="assets/images/cover.jpg" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Alex+Brush&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     CONFIG NOTE
+     Every placeholder value in this file lives in js/config.js.
+     Edit that ONE file to personalize the whole invitation —
+     names, parents, date, venue, bank account, gift address,
+     and the Google Apps Script URL. See README.md.
+     ============================================================ -->
+
+<!-- ================= GATE / OPENING COVER ================= -->
+<div class="gate" id="gate">
+  <div class="gate-monogram" id="gateMonogram">P &amp; G</div>
+  <div class="eyebrow">Undangan Pernikahan</div>
+  <div class="gate-title" id="gateTitle">XXX &amp; XXX</div>
+  <div class="gate-guest">
+    Kepada Bapak/Ibu/Saudara/i<br />
+    <strong id="guestNameGate">Tamu Undangan</strong>
+  </div>
+  <button class="gate-btn" id="openInvitation">
+    Buka Undangan
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </button>
+</div>
+
+<div class="site" id="site">
+
+  <!-- ================= COVER ================= -->
+  <header class="cover" id="cover">
+    <div class="cover-top">
+      <div class="cover-eyebrow">The Wedding Of</div>
+      <div class="cover-guest-label">Kepada Yth.</div>
+      <div class="cover-guest-name" id="guestNameCover">Tamu Undangan</div>
+    </div>
+
+    <div class="cover-mid">
+      <div class="cover-monogram" id="coverMonogram">P &amp; G</div>
+      <h1 class="cover-names">
+        <span id="coverBrideName">XXX</span>
+        <span class="amp">&amp;</span>
+        <span id="coverGroomName">XXX</span>
+        
+      </h1>
+      <div class="cover-date" id="coverDate">XXX</div>
+      <a href="#rsvp" class="cover-cta">Lihat Undangan</a>
+    </div>
+
+    <div class="cover-bottom">
+      <span>Scroll ke bawah</span>
+      <div class="scroll-hint"></div>
+    </div>
+  </header>
+
+  <!-- ================= OPENING QUOTE ================= -->
+  <section class="section quote-section center reveal">
+    <span class="quote-mark">&ldquo;</span>
+    <p class="quote-text">
+      Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu
+      pasangan hidup dari jenismu sendiri, supaya kamu cenderung dan merasa
+      tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.
+    </p>
+    <div class="quote-source">Q.S. Ar-Rum : 21</div>
+  </section>
+
+  <svg class="vine-divider" viewBox="0 0 300 64"><path d="M10 32 C 80 8, 120 56, 150 32 S 220 8, 290 32"/><circle class="leaf" cx="80" cy="18" r="3"/><circle class="leaf" cx="220" cy="46" r="3"/></svg>
+
+  <!-- ================= COUPLE ================= -->
+  <section class="section couple-section reveal" id="couple">
+    <div class="center">
+      <div class="eyebrow">Mempelai</div>
+      <h2 class="section-title">Kedua Mempelai</h2>
+    </div>
+
+    <div class="couple-grid">
+      <div class="couple-card">
+        <img class="couple-photo" id="groomPhoto" src="assets/images/groom.jpg" alt="Foto mempelai pria" />
+        <div class="couple-name" id="groomName">XXX</div>
+        <div class="couple-role">Mempelai Pria</div>
+        <p class="couple-parents">
+          Putra dari<br />
+          Bpk. <span id="groomFather">XXX</span> &amp; Ibu <span id="groomMother">XXX</span>
+        </p>
+      </div>
+
+      <div class="couple-and">&amp;</div>
+
+      <div class="couple-card">
+        <img class="couple-photo" id="bridePhoto" src="assets/images/bride.jpg" alt="Foto mempelai wanita" />
+        <div class="couple-name" id="brideName">XXX</div>
+        <div class="couple-role">Mempelai Wanita</div>
+        <p class="couple-parents">
+          Putri dari<br />
+          Bpk. <span id="brideFather">XXX</span> &amp; Ibu <span id="brideMother">XXX</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <svg class="vine-divider" viewBox="0 0 300 64"><path d="M10 32 C 80 8, 120 56, 150 32 S 220 8, 290 32"/><circle class="leaf" cx="80" cy="18" r="3"/><circle class="leaf" cx="220" cy="46" r="3"/></svg>
+
+  <!-- ================= COUNTDOWN ================= -->
+  <section class="section countdown-section center reveal" id="countdown">
+    <div class="eyebrow">Menghitung Hari</div>
+    <h2 class="section-title">Sampai Hari Bahagia</h2>
+    <p class="section-lede">Kami menantikan kehadiran Anda pada momen istimewa ini.</p>
+
+    <div class="countdown-grid">
+      <div class="countdown-cell">
+        <div class="countdown-num" id="cdDays">00</div>
+        <div class="countdown-label">Hari</div>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-num" id="cdHours">00</div>
+        <div class="countdown-label">Jam</div>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-num" id="cdMinutes">00</div>
+        <div class="countdown-label">Menit</div>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-num" id="cdSeconds">00</div>
+        <div class="countdown-label">Detik</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EVENT DETAILS ================= -->
+  <section class="section event-section reveal" id="event">
+    <div class="center">
+      <div class="eyebrow">Acara</div>
+      <h2 class="section-title">Rangkaian Acara</h2>
+    </div>
+
+    <div class="event-cards">
+      <div class="event-card">
+        <div class="eyebrow">Akad Nikah</div>
+        <div class="event-card-title" id="akadDate">XXX</div>
+        <div class="event-card-time" id="akadTime">XXX</div>
+        <button class="event-card-btn" data-calendar="akad">
+          Simpan ke Kalender
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+        </button>
+      </div>
+      <div class="event-card">
+        <div class="eyebrow">Resepsi</div>
+        <div class="event-card-title" id="resepsiDate">XXX</div>
+        <div class="event-card-time" id="resepsiTime">XXX</div>
+        <button class="event-card-btn" data-calendar="resepsi">
+          Simpan ke Kalender
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MAP / VENUE ================= -->
+  <section class="section map-section reveal" id="venue">
+    <div class="center">
+      <div class="eyebrow">Lokasi</div>
+      <h2 class="section-title">Lokasi Acara</h2>
+    </div>
+
+    <div class="map-frame">
+      <iframe
+        id="mapEmbed"
+        src=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="map-address">
+      <span id="venueAddress">XXX</span>
+      <a class="map-open-btn" id="mapOpenBtn" href="#" target="_blank" rel="noopener">
+        Buka di Google Maps
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <svg class="vine-divider" viewBox="0 0 300 64"><path d="M10 32 C 80 8, 120 56, 150 32 S 220 8, 290 32"/><circle class="leaf" cx="80" cy="18" r="3"/><circle class="leaf" cx="220" cy="46" r="3"/></svg>
+
+  <!-- ================= RSVP ================= -->
+  <section class="section rsvp-section reveal" id="rsvp">
+    <div class="center">
+      <div class="eyebrow">Konfirmasi Kehadiran</div>
+      <h2 class="section-title">RSVP</h2>
+      <p class="section-lede">Mohon konfirmasi kehadiran Anda agar kami dapat mempersiapkan hari istimewa ini dengan baik.</p>
+    </div>
+
+    <form id="rsvpForm" autocomplete="off">
+      <div class="form-group">
+        <label class="form-label" for="rsvpName">Nama Lengkap</label>
+        <input class="form-input" type="text" id="rsvpName" name="name" placeholder="Tulis nama Anda" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Konfirmasi Kehadiran</label>
+        <div class="attend-toggle" id="attendToggle">
+          <label class="attend-option" data-value="Hadir">
+            <input type="radio" name="attendance" value="Hadir" required />
+            Hadir
+          </label>
+          <label class="attend-option" data-value="Tidak Hadir">
+            <input type="radio" name="attendance" value="Tidak Hadir" />
+            Tidak Hadir
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rsvpGuests">Jumlah Tamu (termasuk Anda)</label>
+        <select class="form-select" id="rsvpGuests" name="guests">
+          <option value="1">1 Orang</option>
+          <option value="2">2 Orang</option>
+          <option value="3">3 Orang</option>
+          <option value="4">4 Orang</option>
+          <option value="5">5+ Orang</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rsvpMessage">Ucapan &amp; Doa</label>
+        <textarea class="form-textarea" id="rsvpMessage" name="message" placeholder="Tulis ucapan dan doa terbaik Anda" required></textarea>
+      </div>
+
+      <button class="form-submit" type="submit" id="rsvpSubmit">Kirim RSVP</button>
+      <p class="form-status" id="rsvpStatus" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- ================= WISHES ================= -->
+  <section class="section wishes-section reveal" id="wishes">
+    <div class="center">
+      <div class="eyebrow">Ucapan</div>
+      <h2 class="section-title">Ucapan &amp; Doa</h2>
+      <p class="section-lede">Terima kasih atas doa dan ucapan terbaik dari Anda.</p>
+    </div>
+
+    <div class="wishes-list" id="wishesList">
+      <div class="wish-empty">Memuat ucapan…</div>
+    </div>
+
+    <div class="center">
+      <button class="wishes-refresh" id="wishesRefresh">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-3-6.7M21 4v6h-6"/></svg>
+        Muat ulang ucapan
+      </button>
+    </div>
+  </section>
+
+  <svg class="vine-divider" viewBox="0 0 300 64"><path d="M10 32 C 80 8, 120 56, 150 32 S 220 8, 290 32"/><circle class="leaf" cx="80" cy="18" r="3"/><circle class="leaf" cx="220" cy="46" r="3"/></svg>
+
+  <!-- ================= GIFT ================= -->
+  <section class="section gift-section reveal" id="gift">
+    <div class="eyebrow">Tanda Kasih</div>
+    <h2 class="section-title">Wanna Give Us Some Gifts?</h2>
+    <p class="section-lede">
+      Doa restu Anda adalah hadiah yang paling berarti bagi kami. Namun jika ingin
+      memberi tanda kasih, kami menyediakan pilihan berikut.
+    </p>
+
+    <div class="gift-cards">
+      <div class="gift-card">
+        <div class="eyebrow">Transfer Bank</div>
+        <div class="gift-value" id="bankValue">XXX</div>
+        <div class="gift-sub" id="bankSub">a.n. XXX</div>
+        <button class="gift-copy-btn" id="copyBank">Salin Nomor Rekening</button>
+      </div>
+      <div class="gift-card">
+        <div class="eyebrow">Transfer Bank</div>
+        <div class="gift-value" id="bankValue2">XXX</div>
+        <div class="gift-sub" id="bankSub2">a.n. XXX</div>
+        <button class="gift-copy-btn" id="copyBank2">Salin Nomor Rekening</button>
+      </div>
+      <div class="gift-card">
+        <div class="eyebrow">Kirim Hadiah</div>
+        <div class="gift-value" id="giftAddress" style="font-size:15px; line-height:1.6;">XXX</div>
+        <button class="gift-copy-btn" id="copyAddress">Salin Alamat</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CLOSING ================= -->
+  <footer class="section closing reveal">
+    <div class="closing-monogram" id="closingMonogram">A &amp; B</div>
+    <p class="closing-text">
+      Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i
+      berkenan hadir dan memberikan doa restu kepada kami.
+    </p>
+    <div class="closing-names" id="closingNames">XXX &amp; XXX</div>
+    <div class="closing-credit">Dibuat dengan cinta &middot; Undangan Digital</div>
+  </footer>
+</div>
+
+<!-- ================= FLOATING MUSIC BUTTON ================= -->
+<button class="music-btn" id="musicBtn" aria-label="Putar musik">
+  <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg>
+  <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+</button>
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/audio/song.mp3" type="audio/mpeg" />
+</audio>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
