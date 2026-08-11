@@ -27,14 +27,14 @@ const WEDDING_CONFIG = {
     label: "Akad Nikah",
     dateDisplay: "Ahad, 30 Agustus 2026", // shown on the page
     timeDisplay: "15:30 WIB - Selesai",
-    isoStart: "2026-11-14T08:00:00+07:00",
-    isoEnd: "2026-11-14T10:00:00+07:00",
+    isoStart: "2026-08-30T15:30:00+07:00",
+    isoEnd: "2026-08-30T18:00:00+07:00",
   },
   resepsi: {
     label: "Resepsi",
     dateDisplay: "Senin, 31 Agustus 2026",
     timeDisplay: "10:00 WIB - Selesai",
-    isoStart: "2026-08-31T11:00:00+07:00",
+    isoStart: "2026-08-31T10:00:00+07:00",
     isoEnd: "2026-08-31T14:00:00+07:00",
   },
 
