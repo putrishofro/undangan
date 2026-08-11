@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Generator Tautan Tamu — Undangan</title>
+<style>
+  :root {
+    --ivory: #fbf7f0;
+    --purple: #3b1f52;
+    --purple-deep: #221130;
+    --purple-soft: #5b3e71;
+    --gold: #b8956a;
+    --line: rgba(59,31,82,0.15);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ivory);
+    color: var(--purple-deep);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    padding: 32px 20px 60px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 {
+    font-size: 22px;
+    margin: 0 0 4px;
+    color: var(--purple);
+  }
+  .sub {
+    font-size: 13.5px;
+    color: var(--purple-soft);
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+  label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .field { margin-bottom: 18px; }
+  input[type=text], textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--purple-deep);
+  }
+  textarea { min-height: 150px; resize: vertical; line-height: 1.6; }
+  .hint { font-size: 12px; color: var(--purple-soft); margin-top: 6px; }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .btn-primary { background: var(--purple); color: var(--ivory); }
+  .btn-primary:hover { background: var(--purple-deep); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--purple);
+    border: 1px solid var(--purple);
+  }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 30px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  th {
+    background: var(--purple);
+    color: var(--ivory);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  tr:last-child td { border-bottom: none; }
+  .link-cell { display: flex; align-items: center; gap: 8px; }
+  .link-text {
+    font-size: 12px;
+    color: var(--purple-soft);
+    word-break: break-all;
+    flex: 1;
+  }
+  .row-btn {
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11.5px;
+    white-space: nowrap;
+  }
+  .row-btn.copy { background: var(--purple); color: var(--ivory); }
+  .row-btn.wa { background: #25D366; color: #fff; }
+  .row-btn.copied { background: var(--gold); }
+  .empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--purple-soft);
+    font-size: 13.5px;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+  }
+  .count {
+    font-size: 12.5px;
+    color: var(--purple-soft);
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Generator Tautan Undangan per Tamu</h1>
+  <p class="sub">
+    Alat bantu lokal (tidak perlu diunggah ke GitHub) untuk membuat tautan undangan
+    yang sudah berisi nama masing-masing tamu, lalu membagikannya lewat WhatsApp.
+    Simpan file ini di komputer Anda dan buka langsung di browser kapan saja.
+  </p>
+
+  <div class="field">
+    <label for="baseUrl">Alamat undangan (GitHub Pages) Anda</label>
+    <input type="text" id="baseUrl" placeholder="https://username.github.io/our-wedding/" />
+    <div class="hint">Isi dengan alamat yang muncul setelah Anda mengaktifkan GitHub Pages (lihat README §5).</div>
+  </div>
+
+  <div class="field">
+    <label for="guestInput">Daftar tamu (satu per baris)</label>
+    <textarea id="guestInput" placeholder="Ade Fitriyani
+Budi Santoso, 6281234567890
+Citra Dewi
+Dimas Prasetyo, 6289876543210"></textarea>
+    <div class="hint">
+      Format: <strong>Nama</strong> saja, atau <strong>Nama, nomor WhatsApp</strong> (pakai kode
+      negara tanpa tanda + atau 0 di depan, misalnya 62 untuk Indonesia) jika ingin tombol
+      kirim WhatsApp langsung aktif.
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-primary" id="generateBtn">Buat Tautan</button>
+    <button class="btn-secondary" id="csvBtn">Unduh sebagai CSV</button>
+  </div>
+
+  <div class="count" id="count"></div>
+  <div id="results"><div class="empty">Belum ada tautan dibuat. Isi daftar tamu di atas lalu klik "Buat Tautan".</div></div>
+</div>
+
+<script>
+  const guestInput = document.getElementById("guestInput");
+  const baseUrlInput = document.getElementById("baseUrl");
+  const results = document.getElementById("results");
+  const countEl = document.getElementById("count");
+
+  let currentRows = [];
+
+  function parseGuests(raw) {
+    return raw
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const [namePart, phonePart] = line.split(",");
+        return {
+          name: (namePart || "").trim(),
+          phone: (phonePart || "").trim().replace(/[^0-9]/g, ""),
+        };
+      })
+      .filter((g) => g.name);
+  }
+
+  function buildLink(base, name) {
+    let clean = base.trim();
+    if (!clean) clean = "https://username.github.io/our-wedding/";
+    if (!clean.endsWith("/")) clean += "/";
+    return clean + "?to=" + encodeURIComponent(name);
+  }
+
+  function render(rows) {
+    currentRows = rows;
+    if (!rows.length) {
+      results.innerHTML = '<div class="empty">Belum ada tautan dibuat. Isi daftar tamu di atas lalu klik "Buat Tautan".</div>';
+      countEl.textContent = "";
+      return;
+    }
+
+    countEl.textContent = rows.length + " tamu";
+
+    const table = document.createElement("table");
+    table.innerHTML = `
+      <thead>
+        <tr><th>Nama</th><th>Tautan</th><th></th></tr>
+      </thead>
+      <tbody></tbody>
+    `;
+    const tbody = table.querySelector("tbody");
+
+    rows.forEach((row) => {
+      const tr = document.createElement("tr");
+
+      const waText = encodeURIComponent(
+        `Assalamu'alaikum Warahmatullahi Wabarakatuh. \n\nYth. ${row.name},
+        \nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:
+        \n*Puteri Awaliatush Shofro & M. Mukti Ginanjar*
+        \nDetail undangan bisa dilihat di tautan berikut:\n${row.link}
+        \nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila berkenan hadir dan memberikan doa restu
+        \nTerima kasih banyak atas perhatiannya.
+        \nWassalamu'alaikum Warahmatullahi Wabarakatuh.
+        \nKami yang berbahagia, \n*Puteri & Ginanjar*`
+        
+      );
+      const waHref = row.phone ? `https://wa.me/${row.phone}?text=${waText}` : null;
+
+      tr.innerHTML = `
+        <td>${escapeHtml(row.name)}</td>
+        <td>
+          <div class="link-cell">
+            <span class="link-text">${escapeHtml(row.link)}</span>
+          </div>
+        </td>
+        <td>
+          <div style="display:flex; gap:6px;">
+            <button class="row-btn copy">Salin</button>
+            ${waHref ? `<a class="row-btn wa" href="${waHref}" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">WhatsApp</a>` : ""}
+          </div>
+        </td>
+      `;
+
+      tr.querySelector(".copy").addEventListener("click", function () {
+        navigator.clipboard.writeText(row.link).then(() => {
+          this.textContent = "Tersalin!";
+          this.classList.add("copied");
+          setTimeout(() => {
+            this.textContent = "Salin";
+            this.classList.remove("copied");
+          }, 1500);
+        });
+      });
+
+      tbody.appendChild(tr);
+    });
+
+    results.innerHTML = "";
+    results.appendChild(table);
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  document.getElementById("generateBtn").addEventListener("click", function () {
+    const guests = parseGuests(guestInput.value);
+    const base = baseUrlInput.value;
+    const rows = guests.map((g) => ({
+      name: g.name,
+      phone: g.phone,
+      link: buildLink(base, g.name),
+    }));
+    render(rows);
+  });
+
+  document.getElementById("csvBtn").addEventListener("click", function () {
+    if (!currentRows.length) return;
+    const header = "Nama,Tautan\n";
+    const body = currentRows
+      .map((r) => `"${r.name.replace(/"/g, '""')}","${r.link}"`)
+      .join("\n");
+    const blob = new Blob([header + body], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "daftar-tamu-tautan.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script>
+</body>
+</html>
