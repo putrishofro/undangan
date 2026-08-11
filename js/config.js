@@ -10,7 +10,7 @@ const WEDDING_CONFIG = {
     shortName: "Ginanjar",     // used in cover title (can be first name)
     father: "H. Abdulah Chotib (Alm.)",
     mother: "Hj. Nur Khasanah, S.Pd.",
-    photo: "assets/images/groom.jpeg",
+    photo: "assets/images/groom.png",
   },
   bride: {
     name: "Puteri Awaliatush Shofro, M.Kom.",
@@ -46,7 +46,7 @@ const WEDDING_CONFIG = {
   venue: {
     name: "Gedung Serbaguna Islamic Center Brebes",                       // e.g. "Gedung Serbaguna XXX"
     address: "Jl. Yos Sudarso No.36, Ps. Batang, Kecamatan Bulakamba, Kabupaten Brebes, Jawa Tengah", // full address shown on page
-    googleMapsShareUrl: "https://share.google/kQ9G4Aj0rkoqR8kyG", // "Share" link from Google Maps app
+    googleMapsShareUrl: "https://maps.app.goo.gl/wykp2CvvCJcaJGvYA?g_st=iw", // "Share" link from Google Maps app
     // Optional: a Google Maps EMBED src (Maps > Share > Embed a map > copy the src="...").
     // Leave empty to hide the embedded map and only show the "Open in Google Maps" button.
     googleMapsEmbedSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.1976537283954!2d109.04246297463364!3d-6.866902793131692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fb13c31aed2c9%3A0xc95e2ec54676bba!2sGedung%20Serba%20Guna%20Islamic%20Centre!5e0!3m2!1sid!2sid!4v1785893284599!5m2!1sid!2sid",
