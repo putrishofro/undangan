@@ -46,8 +46,10 @@
 
   setText("akadDate", cfg.akad.dateDisplay);
   setText("akadTime", cfg.akad.timeDisplay);
+  setText("akadVenueName", cfg.akad.venueName);
   setText("resepsiDate", cfg.resepsi.dateDisplay);
   setText("resepsiTime", cfg.resepsi.timeDisplay);
+  setText("resepsiVenueName", cfg.resepsi.venueName);
 
   setText("venueAddress", cfg.venue.address);
   setText("closingMonogram", cfg.monogramInitials);

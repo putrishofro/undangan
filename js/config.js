@@ -29,6 +29,7 @@ const WEDDING_CONFIG = {
     timeDisplay: "15:30 WIB - Selesai",
     isoStart: "2026-08-30T15:30:00+07:00",
     isoEnd: "2026-08-30T18:00:00+07:00",
+    venueName: "Rumah Mempelai Wanita",
   },
   resepsi: {
     label: "Resepsi",
@@ -36,11 +37,12 @@ const WEDDING_CONFIG = {
     timeDisplay: "10:00 WIB - Selesai",
     isoStart: "2026-08-31T10:00:00+07:00",
     isoEnd: "2026-08-31T14:00:00+07:00",
+    venueName: "Gedung Islamic Center Brebes",
   },
 
   // Countdown always targets the earlier of the two events above (akad.isoStart).
   // Change countdownTarget if you want the countdown to point somewhere else.
-  countdownTarget: "2026-08-31T08:00:00+07:00",
+  countdownTarget: "2026-08-31T10:00:00+07:00",
 
   // ---- Venue ----
   venue: {
