@@ -438,6 +438,25 @@ button {
   border-bottom: 1px solid var(--gold);
   padding-bottom: 3px;
 }
+.event-card-venue {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+
+.event-card-venue-name {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.event-card-venue-name svg {
+  flex: none;
+  color: var(--gold);
+}
 .event-card-btn:hover { color: var(--gold); }
 
 /* =========================================================
