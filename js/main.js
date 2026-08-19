@@ -12,11 +12,11 @@
         yoursite.github.io/?to=Ade%20Fitriyani
      --------------------------------------------------------- */
   const params = new URLSearchParams(window.location.search);
-  const guestName = params.get("to") ? decodeURIComponent(params.get("to")) : "Tamu Undangan";
+  const guestName = params.get("to") ? decodeURIComponent(params.get("to")) : "Guest";
   document.getElementById("guestNameGate").textContent = guestName;
-  document.getElementById("guestNameCover").textContent = guestName;
+  // document.getElementById("guestNameCover").textContent = guestName;
   const rsvpNameInput = document.getElementById("rsvpName");
-  if (guestName !== "Tamu Undangan" && rsvpNameInput) rsvpNameInput.value = guestName;
+  if (guestName !== "Guest" && rsvpNameInput) rsvpNameInput.value = guestName;
 
   /* ---------------------------------------------------------
      1. Populate placeholders from config
@@ -126,7 +126,7 @@
   function buildCalendarUrl(eventKey) {
     const ev = cfg[eventKey];
     const title = `${ev.label} — ${cfg.groom.shortName} & ${cfg.bride.shortName}`;
-    const details = `Dengan penuh sukacita, kami mengundang Anda ke acara ${ev.label} kami.\n\nLokasi: ${cfg.venue.name}, ${cfg.venue.address}`;
+    const details = `With great joy, we invite you to our ${ev.label}.\n\nLocation: ${cfg.venue.name}, ${cfg.venue.address}`;
     const dates = `${toGCalDate(ev.isoStart)}/${toGCalDate(ev.isoEnd)}`;
     const location = `${cfg.venue.name}, ${cfg.venue.address}`;
 
@@ -181,7 +181,7 @@
     e.preventDefault();
 
     if (!cfg.scriptUrl || cfg.scriptUrl.indexOf("XXXX") !== -1) {
-      rsvpStatus.textContent = "Formulir belum terhubung ke Google Sheets. Tempel URL Apps Script di js/config.js (lihat README).";
+      rsvpStatus.textContent = "The form isn't connected to Google Sheets yet. Paste the Apps Script URL in js/config.js (see README).";
       rsvpStatus.className = "form-status err";
       return;
     }
@@ -195,13 +195,13 @@
     };
 
     if (!payload.name || !payload.attendance || !payload.message) {
-      rsvpStatus.textContent = "Mohon lengkapi semua kolom yang wajib diisi.";
+      rsvpStatus.textContent = "Please fill in all required fields.";
       rsvpStatus.className = "form-status err";
       return;
     }
 
     rsvpSubmit.disabled = true;
-    rsvpSubmit.textContent = "Mengirim…";
+    rsvpSubmit.textContent = "Sending…";
     rsvpStatus.textContent = "";
     rsvpStatus.className = "form-status";
 
@@ -217,7 +217,7 @@
       const data = await res.json();
 
       if (data && data.status === "success") {
-        rsvpStatus.textContent = "Terima kasih! RSVP Anda berhasil terkirim.";
+        rsvpStatus.textContent = "Thank you! Your RSVP has been sent successfully.";
         rsvpStatus.className = "form-status ok";
         rsvpForm.reset();
         attendToggle.querySelectorAll(".attend-option").forEach((o) => o.classList.remove("is-selected"));
@@ -226,11 +226,11 @@
         throw new Error((data && data.message) || "Unknown error");
       }
     } catch (err) {
-      rsvpStatus.textContent = "Gagal mengirim RSVP. Periksa koneksi internet Anda dan coba lagi.";
+      rsvpStatus.textContent = "Failed to send RSVP. Please check your internet connection and try again.";
       rsvpStatus.className = "form-status err";
     } finally {
       rsvpSubmit.disabled = false;
-      rsvpSubmit.textContent = "Kirim RSVP";
+      rsvpSubmit.textContent = "Send RSVP";
     }
   });
 
@@ -254,7 +254,7 @@
 
   function renderWishes(items) {
     if (!items || !items.length) {
-      wishesList.innerHTML = '<div class="wish-empty">Jadilah yang pertama mengirimkan ucapan!</div>';
+      wishesList.innerHTML = '<div class="wish-empty">Be the first to send your wishes!</div>';
       return;
     }
     wishesList.innerHTML = items
@@ -277,7 +277,7 @@
 
   async function loadWishes() {
     if (!cfg.scriptUrl || cfg.scriptUrl.indexOf("XXXX") !== -1) {
-      wishesList.innerHTML = '<div class="wish-empty">Hubungkan Google Sheets di js/config.js untuk menampilkan ucapan.</div>';
+      wishesList.innerHTML = '<div class="wish-empty">Connect Google Sheets in js/config.js to display wishes.</div>';
       return;
     }
     try {
@@ -285,7 +285,7 @@
       const data = await res.json();
       renderWishes(data && data.wishes ? data.wishes : []);
     } catch (err) {
-      wishesList.innerHTML = '<div class="wish-empty">Tidak dapat memuat ucapan saat ini.</div>';
+      wishesList.innerHTML = '<div class="wish-empty">Unable to load wishes right now.</div>';
     }
   }
 
@@ -296,8 +296,19 @@
   }
 
   /* ---------------------------------------------------------
-     8. Gift — copy to clipboard
+     8. Gift — reveal on click, then copy to clipboard
      --------------------------------------------------------- */
+  const giftToggleBtn = document.getElementById("giftToggleBtn");
+  const giftCards = document.getElementById("giftCards");
+  const giftToggleLabel = giftToggleBtn.querySelector(".gift-toggle-label");
+
+  giftToggleBtn.addEventListener("click", function () {
+    const isHidden = giftCards.classList.contains("is-hidden");
+    giftCards.classList.toggle("is-hidden");
+    giftToggleBtn.setAttribute("aria-expanded", isHidden ? "true" : "false");
+    giftToggleLabel.textContent = isHidden ? "Hide Gift Options" : "Show Gift Options";
+  });
+
   function wireCopy(btnId, text) {
     const btn = document.getElementById(btnId);
     if (!btn) return;

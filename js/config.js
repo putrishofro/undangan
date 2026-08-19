@@ -32,7 +32,7 @@ const WEDDING_CONFIG = {
     venueName: "Rumah Mempelai Wanita",
   },
   resepsi: {
-    label: "Resepsi",
+    label: "Reception",
     dateDisplay: "Senin, 31 Agustus 2026",
     timeDisplay: "10:00 WIB - Selesai",
     isoStart: "2026-08-31T10:00:00+07:00",
@@ -69,7 +69,7 @@ const WEDDING_CONFIG = {
   // ---- Music ----
   music: {
     src: "assets/audio/song.mp3",
-    autoplayOnOpen: true, // tries to play right after the guest taps "Buka Undangan"
+    autoplayOnOpen: true, // tries to play right after the guest taps "Open Invitation"
   },
 
   // ---- Google Apps Script Web App URL ----
