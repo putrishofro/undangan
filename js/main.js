@@ -36,9 +36,11 @@
   setText("groomName", cfg.groom.name);
   setText("groomFather", cfg.groom.father);
   setText("groomMother", cfg.groom.mother);
+  setText("groomAddress", cfg.groom.address);
   setText("brideName", cfg.bride.name);
   setText("brideFather", cfg.bride.father);
   setText("brideMother", cfg.bride.mother);
+  setText("brideAddress", cfg.bride.address);
   const groomPhoto = document.getElementById("groomPhoto");
   const bridePhoto = document.getElementById("bridePhoto");
   if (groomPhoto) groomPhoto.src = cfg.groom.photo;
@@ -302,11 +304,16 @@
   const giftCards = document.getElementById("giftCards");
   const giftToggleLabel = giftToggleBtn.querySelector(".gift-toggle-label");
 
-  giftToggleBtn.addEventListener("click", function () {
-    const isHidden = giftCards.classList.contains("is-hidden");
-    giftCards.classList.toggle("is-hidden");
-    giftToggleBtn.setAttribute("aria-expanded", isHidden ? "true" : "false");
-    giftToggleLabel.textContent = isHidden ? "Hide Gift Options" : "Show Gift Options";
+  // giftToggleBtn.addEventListener("click", function () {
+  //   const isHidden = giftCards.classList.contains("is-hidden");
+  //   giftCards.classList.toggle("is-hidden");
+  //   giftToggleBtn.setAttribute("aria-expanded", isHidden ? "true" : "false");
+  //   giftToggleLabel.textContent = isHidden ? "Hide Gift Options" : "Show Gift Options";
+  // });
+   giftToggleBtn.addEventListener("click", function () {
+    const isOpen = giftCards.classList.toggle("is-open");
+    giftToggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    giftToggleLabel.textContent = isOpen ? "Hide Gift Options" : "Show Gift Options";
   });
 
   function wireCopy(btnId, text) {

@@ -11,13 +11,15 @@ const WEDDING_CONFIG = {
     father: "H. Abdulah Chotib (Alm.)",
     mother: "Hj. Nur Khasanah, S.Pd.",
     photo: "assets/images/groom.png",
+    address: "Bajong, Bukateja, Purbalingga",
   },
   bride: {
     name: "Puteri Awaliatush Shofro, M.Kom.",
     shortName: "Puteri",
-    father: "H. Moh. Robikhun, S.Ag., M.Pd.",
+    father: "H. Moh. Robikhun Masyhuri, M.Pd.",
     mother: "Hj. Sofuah, M.Pd.",
     photo: "assets/images/bride.png",
+    address: "Banjaratma, Bulakamba, Brebes",
   },
   monogramInitials: "P & G", // e.g. "R & A" — shown on cover/gate/closing
 
@@ -63,7 +65,7 @@ const WEDDING_CONFIG = {
     bank2Name: "Bank Mandiri",
     bank2AccountNumber: "1800016856900",
     bank2AccountHolder: "M. Mukti Ginanjar",
-    deliveryAddress: "Jalan Raya Banjaratma RT 05 RW 09, Kecamatan Bulakamba, Kabupaten Brebes, Jawa Tengah, Indonesia",
+    deliveryAddress: "Jalan Raya Desa Banjaratma RT 05 RW 09 (Samping SMK Syafa'atul Ummah), Kec. Bulakamba, Kab. Brebes, Jawa Tengah 52253",
   },
 
   // ---- Music ----
